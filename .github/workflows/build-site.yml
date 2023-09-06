@@ -20,6 +20,7 @@ jobs:
           use-public-rspm: true
       - name: Build
         run: |
+          system('mkdir -p docs')
           install.packages("bookdown")
           install.packages("downlit")
           install.packages("xml2")
