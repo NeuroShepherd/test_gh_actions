@@ -17,6 +17,7 @@ jobs:
         with:
           use-public-rspm: true
       - name: Build
+        run: install.packages("bookdown")
         run: bookdown::render_book("index.Rmd", quiet = TRUE)
         shell: Rscript {0}
       - name: Deploy
