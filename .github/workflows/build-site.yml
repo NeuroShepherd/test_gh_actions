@@ -24,7 +24,7 @@ jobs:
           install.packages("bookdown")
           install.packages("downlit")
           install.packages("xml2")
-          bookdown::render_book("index.Rmd", quiet = TRUE)
+          bookdown::render_book("index.Rmd", quiet = TRUE, output_dir = 'docs')
         shell: Rscript {0}
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4.4.1
