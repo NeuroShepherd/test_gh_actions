@@ -31,27 +31,27 @@ jobs:
           renv::restore()
           bookdown::render_book("index.Rmd", quiet = TRUE, output_dir = 'docs')
         shell: Rscript {0}
-      - name: Deploy
-      # consider finding an alternative workflow that allows for commiting changes
-      # to a branch without the github pages defaults and other clutter. Note that
-      # gh-pages is a special branch recognized by GitHub
-        uses: JamesIves/github-pages-deploy-action@v4.4.1
-        with:
-          branch: gh-pages
-          # folder of "." saves the whole repo. If building to "docs" like above,
-          # can direct GitHub Pages to look in docs folder in settings
-          folder: .
+      # - name: Deploy
+      # # consider finding an alternative workflow that allows for commiting changes
+      # # to a branch without the github pages defaults and other clutter. Note that
+      # # gh-pages is a special branch recognized by GitHub
+      #   uses: JamesIves/github-pages-deploy-action@v4.4.1
+      #   with:
+      #     branch: gh-pages
+      #     # folder of "." saves the whole repo. If building to "docs" like above,
+      #     # can direct GitHub Pages to look in docs folder in settings
+      #     folder: .
 
-      # - name: setup git config
-      #   run: |
-      #     # setup the username and email. I tend to use 'GitHub Actions Bot' with no email by default
-      #     git config user.name "GitHub Actions Bot"
-      #     git config user.email "<>"
-      #
-      # - name: Deploy custom
-      #   run: |
-      #     git checkout gh-pages
-      #     git add docs
-      #     git commit -m "Rebuild site"
-      #     git push
+      - name: setup git config
+        run: |
+          # setup the username and email. I tend to use 'GitHub Actions Bot' with no email by default
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+
+      - name: Deploy custom
+        run: |
+          git checkout gh-pages
+          git add docs
+          git commit -m "Rebuild site"
+          git push
 
