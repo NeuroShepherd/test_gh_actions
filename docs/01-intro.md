@@ -26,3 +26,6 @@ some more text
 
 
 even more text
+
+
+is the caching working??
