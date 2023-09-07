@@ -14,3 +14,9 @@ Chapters and sections are numbered by default. To un-number a heading, add a `{.
 ## some random content
 
 hello there
+
+```{r}
+library(downlit)
+library(xml2)
+```
+
