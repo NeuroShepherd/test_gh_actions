@@ -40,8 +40,15 @@ jobs:
       #     # can direct GitHub Pages to look in docs folder in settings
       #     folder: .
 
+      - name: setup git config
+        run: |
+          # setup the username and email. I tend to use 'GitHub Actions Bot' with no email by default
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+
       - name: Deploy custom
         run: |
+          git checkout gh-pages
           git add docs
           git commit -m "Rebuild site"
           git push
