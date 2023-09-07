@@ -50,7 +50,7 @@ jobs:
 
       - name: Deploy custom
         run: |
-          git checkout gh-pages
+          git checkout -b gh-pages origin/gh-pages
           git add docs
           git commit -m "Rebuild site"
           git push
