@@ -39,7 +39,7 @@ jobs:
           # install.packages("downlit")
           # install.packages("xml2")
           # if (!"renv" %in% installed.packages()) install.packages("renv")
-          # renv::restore()
+          renv::restore()
           bookdown::render_book("index.Rmd", quiet = TRUE, output_dir = 'docs')
         shell: Rscript {0}
 
