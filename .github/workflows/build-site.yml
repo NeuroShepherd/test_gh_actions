@@ -24,7 +24,7 @@ jobs:
       # follow renv instructions: https://rstudio.github.io/renv/articles/ci.html#using-r-libactionssetup-renv
 
       - name: Cache packages
-        uses: actions/cache@v1
+        uses: actions/cache@v2
         with:
           path: ${{ env.RENV_PATHS_ROOT }}
           key: ${{ runner.os }}-renv-${{ hashFiles('**/renv.lock') }}
@@ -38,8 +38,8 @@ jobs:
           # install.packages("bookdown")
           # install.packages("downlit")
           # install.packages("xml2")
-          if (!"renv" %in% installed.packages()) install.packages("renv")
-          renv::restore()
+          # if (!"renv" %in% installed.packages()) install.packages("renv")
+          # renv::restore()
           bookdown::render_book("index.Rmd", quiet = TRUE, output_dir = 'docs')
         shell: Rscript {0}
 
