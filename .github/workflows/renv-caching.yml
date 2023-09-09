@@ -23,6 +23,9 @@ jobs:
     # "Install and activate renv", and "Restore renv package cache" are the
     # necessary steps for actually caching from a renv lockfile
 
+    # note that r-lib/actions/setup-pandoc@v2 was added for rendering
+    # rmarkdown docs, specifically the {bookdown} call at the end
+
 
     steps:
     - uses: actions/checkout@v3
