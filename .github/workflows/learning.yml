@@ -6,9 +6,9 @@ jobs:
   use_commits:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo
+      - name: Check contents
         run: |
-          git checkout -b testing_branch
-      - name: push new branch
-        run: |
-          git push --set-upstream testing_branch origin/testing_branch
+          ls -a
+      # - name: push new branch
+      #   run: |
+      #     git push --set-upstream testing_branch origin/testing_branch
