@@ -13,8 +13,7 @@ jobs:
           git switch testing_branch
       - name: add content
         run: |
-          [[-f sometext.txt]] | touch sometext.txt
-          echo "hello world">sometext.txt
+          echo "hello world">>sometext.txt
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add -A
