@@ -47,7 +47,7 @@ jobs:
 
 
     - name: Restore Renv package cache
-    # this procedure initially caches and then accesses the cache on subsequent jobs
+    # this procedure accesses the cache on subsequent jobs
       uses: actions/cache@v3
       with:
         path: ${{ env.RENV_PATHS_ROOT }}
