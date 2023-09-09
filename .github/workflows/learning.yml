@@ -12,4 +12,4 @@ jobs:
           git checkout -b testing_branch
       - name: push new branch
         run: |
-          git push --set-upstream testing_branch origin/testing_branch
+          git push --set-upstream origin testing_branch
