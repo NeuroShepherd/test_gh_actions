@@ -9,7 +9,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: create new branch
         run: |
-          git checkout -b testing-branch
+          git checkout -b testing_branch
       - name: push new branch
         run: |
           git push --set-upstream testing_branch origin/testing_branch
