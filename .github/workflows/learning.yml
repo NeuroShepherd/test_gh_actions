@@ -10,6 +10,12 @@ jobs:
       - name: create new branch
         run: |
           git checkout -b testing_branch
+      - name: add content
+        run: |
+          [[-f sometext.txt]] | touch sometext.txt
+          echo "hello world">sometext.txt
+          git add -A
+          git commit -m "some text lol"
       - name: push new branch
         run: |
           git push --set-upstream origin testing_branch
