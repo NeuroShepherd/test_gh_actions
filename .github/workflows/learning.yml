@@ -8,9 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
-        run |
+        run: |
           git clone git@github.com:NeuroShepherd/test_gh_actions.git
           git checkout -b testing_branch
       - name: push new branch
-        run |
+        run: |
           git push --set-upstream testing_branch origin/testing_branch
