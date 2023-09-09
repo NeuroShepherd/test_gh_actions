@@ -17,6 +17,12 @@ jobs:
     # If provided via a with: profile: key, that renv profile will be activated,
     # The project will be restored via renv::restore().
 
+    # code adapted from: https://github.com/actions/cache/blob/main/examples.md#r---renv
+    # see also: https://rstudio.github.io/renv/articles/ci.html
+    # the "Build Book" job is specific to this repo, but "Set RENV_PATHS_ROOT",
+    # "Install and activate renv", and "Restore renv package cache" are the
+    # necessary steps for actually caching from a renv lockfile
+
 
     steps:
     - uses: actions/checkout@v3
@@ -26,21 +32,22 @@ jobs:
 
 
     - name: Set RENV_PATHS_ROOT
+    # For renv, the cache directory will vary by OS. The RENV_PATHS_ROOT environment variable is used to set the cache location.
       shell: bash
       run: |
         echo "RENV_PATHS_ROOT=${{ runner.temp }}/renv" >> $GITHUB_ENV
+
+
     - name: Install and activate renv
+    # essentially, this bootstrap {renv} on the runner
       run: |
         install.packages("renv")
         renv::activate()
       shell: Rscript {0}
-    - name: Get R and OS version
-      id: get-version
-      run: |
-        cat("##[set-output name=os-version;]", sessionInfo()$running, "\n", sep = "")
-        cat("##[set-output name=r-version;]", R.Version()$version.string, sep = "")
-      shell: Rscript {0}
+
+
     - name: Restore Renv package cache
+    # this procedure initially caches and then accesses the cache on subsequent jobs
       uses: actions/cache@v3
       with:
         path: ${{ env.RENV_PATHS_ROOT }}
