@@ -9,7 +9,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: create new branch
         run: |
-          git checkout -b testing_branch
+          git checkout testing_branch
           git pull -X theirs
       - name: add content
         run: |
