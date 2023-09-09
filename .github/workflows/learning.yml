@@ -7,9 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Check contents
+      - name: create new branch
         run: |
-          ls -a
-      # - name: push new branch
-      #   run: |
-      #     git push --set-upstream testing_branch origin/testing_branch
+          git checkout -b testing-branch
+      - name: push new branch
+        run: |
+          git push --set-upstream testing_branch origin/testing_branch
