@@ -1,0 +1,48 @@
+name: figure out renv caching
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [master]
+
+
+jobs:
+  renv_cache:
+    runs_on: ubuntu-latest
+
+    # Using these steps will automatically perform the following actions:
+    #
+    # renv will be installed, via install.packages("renv"),
+    # renv will be configured to use the GitHub cache,
+    # If provided via a with: profile: key, that renv profile will be activated,
+    # The project will be restored via renv::restore().
+
+
+    steps:
+    - uses: actions/checkout@v3
+    - uses: r-lib/actions/setup-r@v2
+    - uses: r-lib/actions/setup-renv@v2
+
+    - name: Set RENV_PATHS_ROOT
+      shell: bash
+      run: |
+        echo "RENV_PATHS_ROOT=${{ runner.temp }}/renv" >> $GITHUB_ENV
+    - name: Install and activate renv
+      run: |
+        install.packages("renv")
+        renv::activate()
+      shell: Rscript {0}
+    - name: Get R and OS version
+      id: get-version
+      run: |
+        cat("##[set-output name=os-version;]", sessionInfo()$running, "\n", sep = "")
+        cat("##[set-output name=r-version;]", R.Version()$version.string, sep = "")
+      shell: Rscript {0}
+    - name: Restore Renv package cache
+      uses: actions/cache@v3
+      with:
+        path: ${{ env.RENV_PATHS_ROOT }}
+        key: ${{ steps.get-version.outputs.os-version }}-${{ steps.get-version.outputs.r-version }}-${{ inputs.cache-version }}-${{ hashFiles('renv.lock') }}
+        restore-keys: ${{ steps.get-version.outputs.os-version }}-${{ steps.get-version.outputs.r-version }}-${{inputs.cache-version }}-
+
+
