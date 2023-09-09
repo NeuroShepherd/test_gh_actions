@@ -10,6 +10,7 @@ jobs:
       - name: create new branch
         run: |
           git checkout -b testing_branch
+          git pull -X theirs
       - name: add content
         run: |
           [[-f sometext.txt]] | touch sometext.txt
@@ -19,5 +20,8 @@ jobs:
           git add -A
           git commit -m "some text lol"
       - name: push new branch
+      # note that git push --set-upstream origin XXX will only work when
+      # pushing a branch to remote the first time, but fails thereafter so
+      # create branch on remote first and just use git push on the action
         run: |
-          git push --set-upstream origin testing_branch
+          git push
