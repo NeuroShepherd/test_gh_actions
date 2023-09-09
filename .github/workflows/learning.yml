@@ -1,7 +1,7 @@
 name: just-learning
 
 on:
-  workflow_dispatch
+  workflow_dispatch:
 
 jobs:
   use_commits:
