@@ -9,8 +9,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: create new branch
         run: |
-          git checkout testing_branch
-          git pull -X theirs
+          git fetch
+          git switch testing_branch
       - name: add content
         run: |
           [[-f sometext.txt]] | touch sometext.txt
