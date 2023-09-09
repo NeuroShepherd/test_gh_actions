@@ -8,7 +8,6 @@ jobs:
     steps:
       - name: Checkout repo
         run: |
-          # git clone git@github.com:NeuroShepherd/test_gh_actions.git
           git checkout -b testing_branch
       - name: push new branch
         run: |
