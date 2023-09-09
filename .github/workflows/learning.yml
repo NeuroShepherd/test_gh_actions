@@ -16,6 +16,9 @@ jobs:
 
       - name: add content
       # Must configure a user name and email for the commit to work
+      # alternative option:
+      #     git config user.name "GitHub Actions Bot"
+      #     git config user.email "<>"
         run: |
           echo "hello world">>sometext.txt
           git config user.name github-actions
