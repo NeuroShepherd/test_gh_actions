@@ -27,6 +27,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - uses: r-lib/actions/setup-r@v2
+    - uses: r-lib/actions/setup-renv@v2
     - uses: r-lib/actions/setup-pandoc@v2
 
 
@@ -57,8 +58,6 @@ jobs:
     - name: Build book
       run: |
         system('mkdir -p docs')
-        install.packages("renv")
-        renv::restore()
         bookdown::render_book("index.Rmd", quiet = TRUE, output_dir = 'docs')
       shell: Rscript {0}
 
