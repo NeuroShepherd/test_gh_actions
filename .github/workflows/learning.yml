@@ -8,14 +8,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: create new branch
+      # Ok so, create the desired branch first and push it to the remote.
+      # Then you can fetch and switch to it.
         run: |
           git fetch
           git switch testing_branch
+
       - name: add content
+      # The action doesn't seem to approve of not declaring user info?
         run: |
           echo "hello world">>sometext.txt
-          git config user.name github-actions
-          git config user.email github-actions@github.com
           git add -A
           git commit -m "some text lol"
       - name: push new branch
