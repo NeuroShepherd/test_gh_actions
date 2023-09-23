@@ -2,6 +2,11 @@ name: learn-github-actions-params
 
 on: workflow_dispatch
 
+env:
+  hello: there
+  not_helpful: 42
+  art_name: my-first-artifact-run-${{ github.run_number }}
+  
 jobs:
   find-github-actions-params:
     runs-on: ubuntu-latest
@@ -41,7 +46,7 @@ jobs:
       - name: "Save file as artifact"
         uses: actions/upload-artifact@v3
         with:
-          name: my-first-artifact-run-${{ github.run_number }}
+          name: ${{ env.art_name }}
           path: |
             gh_events.json
             github_context.json
@@ -67,7 +72,7 @@ jobs:
       - name: "Download artifact"
         uses: actions/download-artifact@v3
         with:
-          name: my-first-artifact-run-${{ github.run_number }}
+          name: ${{ env.art_name }}
 
 # Just check the artifact contents to see that it was actually downloaded
       - name: "Show added contents"
