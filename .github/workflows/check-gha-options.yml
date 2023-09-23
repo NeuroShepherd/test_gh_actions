@@ -41,6 +41,9 @@ jobs:
 # results between jobs!!!
   reuse-artifact:
     runs-on: ubuntu-latest
+# GH jobs run in parallel not sequentially by default so we must explicitly declare
+# that this job needs the other job to be done first before executing.
+    needs: find-github-actions-params
     steps:
 
 # Note: You can only download artifacts in a workflow that were uploaded during the same workflow run.
