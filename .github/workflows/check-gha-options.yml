@@ -24,4 +24,8 @@ jobs:
           path: |
             gh_events.json
           retention-days: 5
+      - name: "Upload artifact"
+        uses: actions/download-artifact@v3
+        with:
+          name: my-first-artifact
 
