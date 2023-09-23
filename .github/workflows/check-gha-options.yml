@@ -6,17 +6,29 @@ jobs:
   find-github-actions-params:
     runs-on: ubuntu-latest
     steps:
+
+# Begin simple, and just find the command(s) for identifying the labels for
+# events available through GitHub via github.events parameter
       - name: "GitHub events"
         run: |
           echo '${{ toJSON(github.event) }}' | jq
         shell: bash
+
+# Echo the results of the github.event parameter to see all possible values,
+# format with jq, and then cat the results to a file which will be saved later
       - name: "Save GH events to file"
         run: |
           echo '${{ toJSON(github.event) }}' | jq | cat > gh_events.json
+          
+# Check that the file exists in the dir and contains expected JSON contents
       - name: "Check file exists"
         run: |
           ls
           cat gh_events.json
+          
+# This saves the gh_events.json file as an artifact outside of the workflow.
+# It can be downloaded directly from the Summary tab of a given run. In this
+# example, the file should only stay available for 5 days.
       - name: "Save file as artifact"
         uses: actions/upload-artifact@v3
         with:
@@ -24,6 +36,8 @@ jobs:
           path: |
             gh_events.json
           retention-days: 5
+          
+# Note: You can only download artifacts in a workflow that were uploaded during the same workflow run.
       - name: "Upload artifact"
         uses: actions/download-artifact@v3
         with:
