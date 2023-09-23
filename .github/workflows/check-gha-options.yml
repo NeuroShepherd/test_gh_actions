@@ -46,9 +46,19 @@ jobs:
     needs: find-github-actions-params
     steps:
 
+# Show that the runner is empty
+      - name: "Show empty"
+        run: |
+          ls
+
 # Note: You can only download artifacts in a workflow that were uploaded during the same workflow run.
       - name: "Download artifact"
         uses: actions/download-artifact@v3
         with:
           name: my-first-artifact
+
+# Just check the artifact contents to see that it was actually downloaded
+      - name: "Show added contents"
+        run: |
+          ls
 
