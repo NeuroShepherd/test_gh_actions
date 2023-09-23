@@ -1,13 +1,12 @@
-name: check-available
+name: learn-github-actions-params
 
 on: workflow_dispatch
 
 jobs:
-  basic-checker:
+  find-github-actions-params:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: "read gh actions event info"
+      - name: "GitHub events"
         run: |
           echo '${{ toJSON(github.event) }}' | jq
         shell: bash
