@@ -38,7 +38,7 @@ jobs:
       - name: "Save file as artifact"
         uses: actions/upload-artifact@v3
         with:
-          name: my-first-artifact
+          name: my-first-artifact-run-'${{ github.run_number }}'
           path: |
             gh_events.json
             github_context.json
@@ -62,7 +62,7 @@ jobs:
       - name: "Download artifact"
         uses: actions/download-artifact@v3
         with:
-          name: my-first-artifact
+          name: my-first-artifact-run-'${{ github.run_number }}'
 
 # Just check the artifact contents to see that it was actually downloaded
       - name: "Show added contents"
