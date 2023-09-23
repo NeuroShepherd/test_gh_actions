@@ -36,10 +36,16 @@ jobs:
           path: |
             gh_events.json
           retention-days: 5
-          
+
+# NOTE: jobs do not share the same runner so artifacts are needed for sharing
+# results between jobs!!!
+  reuse-artifact:
+    runs-on: ubuntu-latest
+      steps:
+
 # Note: You can only download artifacts in a workflow that were uploaded during the same workflow run.
-      - name: "Upload artifact"
-        uses: actions/download-artifact@v3
-        with:
-          name: my-first-artifact
+        - name: "Download artifact"
+          uses: actions/download-artifact@v3
+          with:
+            name: my-first-artifact
 
