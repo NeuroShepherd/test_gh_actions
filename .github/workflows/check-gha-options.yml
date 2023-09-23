@@ -17,4 +17,11 @@ jobs:
         run: |
           ls
           cat gh_events.json
+      - name: "Save file as artifact"
+        uses: actions/upload-artifact@v3
+        with:
+          name: my-first-artifact
+          path: |
+            gh_events.json
+          retention-days: 5
 
