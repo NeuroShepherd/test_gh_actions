@@ -1,7 +1,7 @@
 --- 
 title: "A Minimal Book Example"
 author: "John Doe"
-date: "2023-09-09"
+date: "2023-09-23"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib, packages.bib]
