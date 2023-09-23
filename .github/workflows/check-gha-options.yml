@@ -2,11 +2,15 @@ name: learn-github-actions-params
 
 on: workflow_dispatch
 
+# Define some environment variables to demonstrate them showing up in the
+# env_context.json file, and likewise use env.art_name in the script
+# so that a single variable can be set rather than repeating the same
+# code for creating the artifact object name
 env:
   hello: there
   not_helpful: 42
   art_name: my-first-artifact-run-${{ github.run_number }}
-  
+
 jobs:
   find-github-actions-params:
     runs-on: ubuntu-latest
