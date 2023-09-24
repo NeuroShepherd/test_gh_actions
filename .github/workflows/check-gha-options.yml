@@ -36,14 +36,15 @@ jobs:
 # console, but you should be cautious when exporting or printing the context."
 # So just extract keys (nested) for the github context
 # https://stackoverflow.com/questions/46564720/how-to-extract-all-also-nested-key-names-with-jq
+# Prevent printing to console with {} &> /dev/null which directs stdout to this garbage folder
       - name: "Save GH events to file"
         run: |
           {
           '${{ toJSON(github.event) }}' | jq | tee > gh_events.json
+          '${{ toJSON(github) }}' | jq -r '[paths | join(".")]' | echo > github_context.json
+          '${{ toJSON(env) }}' | jq | echo > env_context.json
+          '${{ toJSON(vars) }}' | jq | echo > vars_context.json
           } &> /dev/null
-  #        '${{ toJSON(github) }}' | jq -r '[paths | join(".")]' | echo > github_context.json
-   #       '${{ toJSON(env) }}' | jq | echo > env_context.json
-   #       '${{ toJSON(vars) }}' | jq | echo > vars_context.json
 
           
 # Check that the file exists in the dir and contains expected JSON contents
