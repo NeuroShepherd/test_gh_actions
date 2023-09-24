@@ -1,0 +1,26 @@
+name: learn-caching
+
+# Artifacts and caching are similar because they provide the ability to store files on GitHub, 
+# but each feature offers different use cases and cannot be used interchangeably.
+
+# * Use caching when you want to reuse files that don't change often between jobs or workflow runs, 
+# such as build dependencies from a package management system.
+# * Use artifacts when you want to save files produced by a job to view after a workflow run has
+# ended, such as built binaries or build logs.
+
+# https://docs.github.com/en/actions/using-workflows/caching-dependencies-to-speed-up-workflows
+
+
+on: workflow_dispatch
+
+jobs:
+  caching-basic:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: "Cache step 1"
+        id: cache-baby
+        uses: actions/cache@v4
+        env:
+          cache-name: hello-there
+
+  
