@@ -48,8 +48,6 @@ jobs:
       - name: "Check file exists"
         run: |
           ls
-          cat gh_events.json
-          cat github_context.json
           
 # This saves the gh_events.json file as an artifact outside of the workflow.
 # It can be downloaded directly from the Summary tab of a given run. In this
