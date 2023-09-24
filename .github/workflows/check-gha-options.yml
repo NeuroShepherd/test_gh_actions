@@ -40,7 +40,8 @@ jobs:
       - name: "Save GH events to file"
         run: |
           echo '${{ toJSON(github.event) }}' | jq | cat > gh_events.json
-          echo '${{ toJSON(github) }}' | jq -r '[paths | join(".")]' | cat > github_context.json
+          echo '${{ toJSON(github) }}' | jq | cat > github_context.json
+          echo '${{ toJSON(github) }}' | jq -r '[paths | join(".")]' | cat > github_context_keys.json
           echo '${{ toJSON(env) }}' | jq | cat > env_context.json
           echo '${{ toJSON(vars) }}' | jq | cat > vars_context.json
 
@@ -61,6 +62,7 @@ jobs:
           path: |
             gh_events.json
             github_context.json
+            github_context_keys.json
             env_context.json
             vars_context.json
           retention-days: 5
