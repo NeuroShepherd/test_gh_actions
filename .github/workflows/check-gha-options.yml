@@ -25,7 +25,7 @@ jobs:
 
 
 # Echo the results of the github.event parameter to see all possible values,
-# format with jq, and then cat the results to a file which will be saved later.
+# format with jq, and then echo the results to a file which will be saved later.
 # Later added the github.ref to explore that.
 # General: "github.*" is a context with options such as event (which is even
 # further nested) and ref that provide information. Other contexts exist, and
@@ -38,10 +38,10 @@ jobs:
 # https://stackoverflow.com/questions/46564720/how-to-extract-all-also-nested-key-names-with-jq
       - name: "Save GH events to file"
         run: |
-          '${{ toJSON(github.event) }}' | jq | cat > gh_events.json
-          '${{ toJSON(github) }}' | jq -r '[paths | join(".")]' | cat > github_context.json
-          '${{ toJSON(env) }}' | jq | cat > env_context.json
-          '${{ toJSON(vars) }}' | jq | cat > vars_context.json
+          '${{ toJSON(github.event) }}' | jq | echo > gh_events.json
+          '${{ toJSON(github) }}' | jq -r '[paths | join(".")]' | echo > github_context.json
+          '${{ toJSON(env) }}' | jq | echo > env_context.json
+          '${{ toJSON(vars) }}' | jq | echo > vars_context.json
 
           
 # Check that the file exists in the dir and contains expected JSON contents
