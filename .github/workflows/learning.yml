@@ -10,6 +10,7 @@ jobs:
       - name: create new branch
       # Ok so, create the desired branch first and push it to the remote.
       # Then you can fetch and switch to it.
+      # Also an action option: https://github.com/actions/checkout#checkout-a-different-branch
         run: |
           git fetch
           git switch testing_branch
