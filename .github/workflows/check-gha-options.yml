@@ -39,12 +39,11 @@ jobs:
 # Prevent printing to console with {} &> /dev/null which directs stdout to this garbage folder
       - name: "Save GH events to file"
         run: |
-          {
-          '${{ toJSON(github.event) }}' | jq | tee > gh_events.json
-          '${{ toJSON(github) }}' | jq -r '[paths | join(".")]' | echo > github_context.json
-          '${{ toJSON(env) }}' | jq | echo > env_context.json
-          '${{ toJSON(vars) }}' | jq | echo > vars_context.json
-          } &> /dev/null
+          '${{ toJSON(github.event) }}' | jq | echo > gh_events.json 2>&1
+          '${{ toJSON(github) }}' | jq -r '[paths | join(".")]' | echo > github_context.json 2>&1
+          '${{ toJSON(env) }}' | jq | echo > env_context.json 2>&1
+          '${{ toJSON(vars) }}' | jq | echo > vars_context.json 2>&1
+
 
           
 # Check that the file exists in the dir and contains expected JSON contents
