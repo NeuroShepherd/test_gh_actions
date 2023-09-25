@@ -17,6 +17,19 @@ jobs:
       - uses: r-lib/actions/setup-renv@v2
       - uses: r-lib/actions/setup-pandoc@v2
 
+      - name: Set RENV_PATHS_ROOT
+          # For renv, the cache directory will vary by OS. The RENV_PATHS_ROOT environment variable is used to set the cache location.
+        shell: bash
+        run: |
+          echo "RENV_PATHS_ROOT=${{ runner.temp }}/renv" >> $GITHUB_ENV
+
+      - name: Restore Renv package cache
+        # this procedure accesses the cache on subsequent jobs
+        uses: actions/cache@v3
+        with:
+          path: ${{ env.RENV_PATHS_ROOT }}
+          key: ${{ steps.get-version.outputs.os-version }}-${{ steps.get-version.outputs.r-version }}-${{ inputs.cache-version }}-${{ hashFiles('renv.lock') }}
+          restore-keys: ${{ steps.get-version.outputs.os-version }}-${{ steps.get-version.outputs.r-version }}-${{inputs.cache-version }}-
 
       - name: Build book
         run: |
