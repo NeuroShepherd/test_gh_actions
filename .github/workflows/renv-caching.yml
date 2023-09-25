@@ -2,8 +2,7 @@ name: figure out renv caching
 
 on:
   workflow_dispatch:
-  push:
-    branches: [master]
+
 
 
 jobs:
