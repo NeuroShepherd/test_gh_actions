@@ -14,22 +14,6 @@ jobs:
       - name: make a file
         run: |
           echo "Hello it is" `date` >> new_file.txt
-
-      - name: fetch all branches
-        run: |
-          git fetch --all
-
-      - name: stash changes
-        run: |
-          git stash
-          
-      - name: checkout a branch
-        run: |
-          git checkout garbage_branch
-
-      - name: stash pop the changes
-        run: |
-          git stash pop
           
       - name: set git credentials to gh actions
         run: |
