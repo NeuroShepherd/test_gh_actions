@@ -36,3 +36,13 @@ jobs:
           bookdown::render_book("index.Rmd", quiet = TRUE, output_dir = 'docs')
         shell: Rscript {0}
 
+      - name: commit docs to gh-pages branch
+        run: |
+          git switch gh-pages
+          git add docs
+          git commit -m "Update website content"
+          
+      - name: push to remote
+        run: |
+          git push
+
