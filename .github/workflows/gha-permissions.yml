@@ -21,7 +21,7 @@ jobs:
 
       - name: checkout a branch
         run: |
-          git checkout gh-pages
+          git checkout garbage_branch
 
       - name: set git credentials to gh actions
         run: |
