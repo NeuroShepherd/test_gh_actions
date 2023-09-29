@@ -17,7 +17,7 @@ jobs:
 
       - name: fetch the branch
         run: |
-          git fetch gh-pages
+          git fetch --all
 
       - name: checkout a branch
         run: |
