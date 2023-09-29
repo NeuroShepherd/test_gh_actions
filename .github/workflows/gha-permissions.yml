@@ -15,6 +15,10 @@ jobs:
         run: |
           echo "Hello it is" `date` >> new_file.txt
 
+      - name: fetch the branch
+        run: |
+          git fetch gh-pages
+
       - name: checkout a branch
         run: |
           git checkout gh-pages
