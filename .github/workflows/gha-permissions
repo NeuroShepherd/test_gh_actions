@@ -1,0 +1,30 @@
+name: github-permissions
+
+on:
+  workflow_dispatch:
+
+
+jobs:
+  test-permissions:
+    runs-on: ubuntu-latest
+    steps:
+
+      - uses: actions/checkout@v3
+
+      - name: make a file
+        run: |
+          echo "Hello it is" `date` >> new_file.txt
+
+      - name: checkout a branch
+        run: |
+          git checkout gh-pages
+
+      - name: commit file
+        run: |
+          git add -A
+          git commit -m "Add text to new_file.txt"
+
+      - name: push file
+        run: |
+          git push
+  
