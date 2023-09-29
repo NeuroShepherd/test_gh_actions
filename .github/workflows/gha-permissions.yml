@@ -23,6 +23,11 @@ jobs:
         run: |
           git checkout gh-pages
 
+      - name: set git credentials to gh actions
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          
       - name: commit file
         run: |
           git add -A
